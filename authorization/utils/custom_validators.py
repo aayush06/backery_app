@@ -5,18 +5,6 @@ from django.core.exceptions import ValidationError
 from rest_framework import serializers
 
 
-def validate_file_extension(value):
-    """
-        method to check files extension validation
-    """
-    ext = os.path.splitext(value.name)[1]
-    valid_extensions = ['.jpg', '.png', '.jpeg']
-    if not ext.lower() in valid_extensions:
-        raise ValidationError(
-            """Unsupported file extension.
-             Only files with .jpg, .jpeg, .png are allowed""")
-
-
 def validate_password_field(value):
     """
         method to check validity of password field
@@ -55,20 +43,3 @@ def validate_username_field(value):
             msg.append("field must contain atleast one character")
         if len(msg) > 0:
             raise serializers.ValidationError(msg)
-
-
-def validate_user_alert_field(json_value):
-    """
-        method to check for keys name and value
-        type in json fields
-    """
-    possible_keys = ["email", "sms"]
-    msg = []
-    if json_value and isinstance(json_value, dict):
-        for k, v in json_value.items():
-            if k not in possible_keys:
-                msg.append("field name must be either email or sms")
-            if not isinstance(v, bool):
-                msg.append(k + "value must be of boolean type")
-    if len(msg) > 0:
-        raise serializers.ValidationError(msg)
