@@ -51,3 +51,7 @@ Bakery App to order vailable bakery products
 - runserver
 
 ```python manage.py runserver```
+
+
+#### To view endpoints on swagger 
+- after running server e.g. locally access http://localhost:8000/docs/ on browser
