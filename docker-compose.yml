@@ -1,0 +1,45 @@
+version: '2'
+
+services:
+  db:
+    image: postgres:11.4
+    restart: always
+    expose:
+      - "5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: sqlpass
+      POSTGRES_DB: backery_app_db
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      some_network:
+
+  web:
+    build: .
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/backery_app
+    environment:
+      DB_USER: postgres
+      DB_PASSWORD: sqlpass
+      DB_NAME: backery_app_db
+      DB_HOST: db
+      DB_PORT: 5432
+      DOCKER: 'true'
+      DEBUG: 'true' 
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    links:
+      - db:db
+    networks:
+      some_network:
+
+volumes:
+  pgdata:
+    driver: local
+networks:
+  some_network:
