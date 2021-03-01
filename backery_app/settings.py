@@ -52,7 +52,9 @@ INSTALLED_APPS = [
 ]
 
 LOCAL_APPS = [
-    'authorization'
+    'authorization',
+    'backery_item',
+    'order'
 ]
 
 THIRD_PARTY_PACKAGES = [
@@ -177,6 +179,16 @@ JWT_AUTH = {
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
     'JWT_AUTH_HEADER_PREFIX': 'Token',
     'JWT_AUTH_COOKIE': None,
+}
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        "apiKey": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
 }
 
 LANGUAGE_CODE = 'en-us'

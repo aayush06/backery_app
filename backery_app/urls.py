@@ -17,11 +17,32 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework import permissions
+
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+schema_view = get_schema_view(
+   openapi.Info(
+      title="Backery App Endpoint",
+      default_version='v1',
+      description="Backery App Endpoint Description",
+      contact=openapi.Contact(email="aayushbhatnagar06@gmail.com"),
+   ),
+   public=True,
+   permission_classes=(permissions.AllowAny,),
+)
+
 
 apis = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/v1/', include("authorization.urls")),
+    url(r'^api/v1/', include("backery_item.urls")),
+    url(r'^api/v1/', include("order.urls"))
 ]
 
-urlpatterns = apis + static(
+urlpatterns = apis + [
+    url(r'^docs/', schema_view.with_ui('swagger', cache_timeout=0),
+        name='schema-swagger')
+] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

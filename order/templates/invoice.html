@@ -1,0 +1,59 @@
+{% load static %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="">
+                <div class="p-0">
+                    <div class="row pb-4 pt-4">
+
+                        <div class="col-md-6 text-right">
+                            <p class="font-weight-bold mb-2"><strong>BAKERY</strong></p>
+                            
+                        </div>
+                    </div>
+
+                    <hr class="my-1">
+
+                    <div class="row pb-4 pt-4">
+                        <div class="col-md-6 text-left">
+                            <p class="mb-2"><span class="text-muted">Customer Name: </span> {{user_fullname}}</p>
+                            <p class="mb-2"><span class="text-muted">Email: </span> {{user_email}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row pb-4 pt-4">
+                        <div class="col-md-12">
+                            <table class="table">
+                                <tbody>
+                                    <tr style="background-color: #96DCFD">
+                                        <td>Product Name</td>
+                                        <td>{{products}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Amount</td>
+                                        <td>INR {{amount}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="text-light mt-5 mb-5 text-center small">by : <a class="text-light" target="_blank" href="www.bakery.com">www.bakery.com</a></div>
+
+</div>
+
+<style type="text/css">
+    body {
+    background: #FAFBFD;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    }   
+</style>
+
